@@ -1,0 +1,40 @@
+version: "3.9"
+services:
+  postgres-library:
+    image: postgres:14.5
+    environment:
+      POSTGRES_DB: "DMITRIN_205"
+      POSTGRES_USER: "DMITRIN_205"
+      POSTGRES_PASSWORD: "DMITRIN_205"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - ./docker/db/scripts/library:/docker-entrypoint-initdb.d
+      - ./dz:/var/lib/postgresql/data
+    ports:
+      - "5435:5432"
+
+  postgres-train:
+    image: postgres:14.5
+    environment:
+      POSTGRES_DB: "DMITRIN_205"
+      POSTGRES_USER: "DMITRIN_205"
+      POSTGRES_PASSWORD: "DMITRIN_205"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - ./docker/db/scripts/train:/docker-entrypoint-initdb.d
+      - ./dz:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+
+  postgres-hospital:
+    image: postgres:14.5
+    environment:
+      POSTGRES_DB: "DMITRIN_205"
+      POSTGRES_USER: "DMITRIN_205"
+      POSTGRES_PASSWORD: "DMITRIN_205"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - ./docker/db/scripts/hospital:/docker-entrypoint-initdb.d
+      - ./dz:/var/lib/postgresql/data
+    ports:
+      - "5434:5432"
